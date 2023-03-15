@@ -1,6 +1,7 @@
 import { StyleSheet, Text } from "react-native";
 import { Card } from "react-native-paper";
 import styled from "styled-components";
+const titlefontFamily = `${(props) => props.theme.fonts.body}`;
 const RestaurantCard = styled(Card)`
   backgroundcolor: "white";
 `;
@@ -9,6 +10,7 @@ const RestaurantCardCover = styled(Card.Cover)`
   backgroundcolor: "white";
 `;
 const Title = styled(Text)`
+  font-family: ${(props) => props.theme.fonts.body};
   padding: ${(props) => props.theme.space[3]};
   color: ${(props) => props.theme.colors.ui.success};
 `;
