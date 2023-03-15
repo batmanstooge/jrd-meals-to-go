@@ -5,11 +5,11 @@ const RestaurantCard = styled(Card)`
   backgroundcolor: "white";
 `;
 const RestaurantCardCover = styled(Card.Cover)`
-  padding: 16px;
+  padding: ${(props) => props.theme.space[3]};
   backgroundcolor: "white";
 `;
 const Title = styled(Text)`
-  padding: 16px;
+  padding: ${(props) => props.theme.space[3]};
   color: ${(props) => props.theme.colors.ui.success};
 `;
 export const RestaurantInfoCard = ({ restaurant = {} }) => {

@@ -16,11 +16,11 @@ const RestaurantsSafeAreaView = styled(SafeAreaView)`
 `;
 
 const RestaurantsSearchContainer = styled(View)`
-  padding: 16px;
+  padding: ${(props) => props.theme.space[3]};
 `;
 
 const RestaurantsInfoCardContainer = styled(View)`
-  padding: 16px;
+  padding: ${(props) => props.theme.space[3]};
   "background-color":blue ;
   flex: 1;
 `;
