@@ -1,4 +1,4 @@
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Card } from "react-native-paper";
 import styled from "styled-components";
 const titlefontFamily = `${(props) => props.theme.fonts.body}`;
@@ -9,10 +9,20 @@ const RestaurantCardCover = styled(Card.Cover)`
   padding: ${(props) => props.theme.space[3]};
   backgroundcolor: "white";
 `;
-const Title = styled(Text)`
-  font-family: ${(props) => props.theme.fonts.body};
+
+const RestaurantCardTitleContainer = styled(View)`
   padding: ${(props) => props.theme.space[3]};
-  color: ${(props) => props.theme.colors.ui.success};
+`;
+
+const RestaurantCardTitle = styled(Text)`
+  font-family: ${(props) => props.theme.fonts.heading};
+  font-size: ${(props) => props.theme.fontSizes.body};
+  color: ${(props) => props.theme.colors.ui.primary};
+`;
+
+const RestaurantCardAddress = styled(Text)`
+  font-family: ${(props) => props.theme.fonts.body};
+  font-size: ${(props) => props.theme.fontSizes.caption};
 `;
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
@@ -29,7 +39,10 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
   return (
     <RestaurantCard elevation={5}>
       <RestaurantCardCover source={{ uri: photos[0] }} />
-      <Title>{name}</Title>
+      <RestaurantCardTitleContainer>
+        <RestaurantCardTitle>{name}</RestaurantCardTitle>
+        <RestaurantCardAddress>{address}</RestaurantCardAddress>
+      </RestaurantCardTitleContainer>
     </RestaurantCard>
   );
 };
