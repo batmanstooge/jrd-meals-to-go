@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 
-import { RestaurantsScreen } from "./features/restaurants/screens/restaurants.screen";
+import { RestaurantsScreen } from "./src/features/restaurants/screens/restaurants.screen";
 
 export default function App() {
   return (
