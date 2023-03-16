@@ -1,37 +1,76 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  Platform,
-  StatusBar,
-} from "react-native";
 import { Searchbar } from "react-native-paper";
+import { StatusBar, FlatList, SafeAreaView, View } from "react-native";
 import styled from "styled-components";
+
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 
-const RestaurantsSafeAreaView = styled(SafeAreaView)`
+const SafeArea = styled(SafeAreaView)`
   flex: 1;
-  margintop: ${StatusBar.currentHeight}px;
+  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`};
 `;
 
-const RestaurantsSearchContainer = styled(View)`
+const SearchContainer = styled(View)`
   padding: ${(props) => props.theme.space[3]};
 `;
 
-const RestaurantsInfoCardContainer = styled(View)`
-  padding: ${(props) => props.theme.space[3]};
-  "background-color":blue ;
-  flex: 1;
-`;
+const RestaurantList = styled(FlatList).attrs({
+  contentContainerStyle: {
+    padding: 16,
+  },
+})``;
 
 export const RestaurantsScreen = () => (
-  <RestaurantsSafeAreaView>
-    <RestaurantsSearchContainer>
+  <SafeArea>
+    <SearchContainer>
       <Searchbar />
-    </RestaurantsSearchContainer>
-    <RestaurantsInfoCardContainer>
-      <RestaurantInfoCard />
-    </RestaurantsInfoCardContainer>
-  </RestaurantsSafeAreaView>
+    </SearchContainer>
+    <FlatList
+      data={[
+        {
+          name: "1",
+        },
+        {
+          name: "2",
+        },
+        {
+          name: "3",
+        },
+        {
+          name: "4",
+        },
+        {
+          name: "5",
+        },
+        {
+          name: "6",
+        },
+        {
+          name: "7",
+        },
+        {
+          name: "8",
+        },
+        {
+          name: "9",
+        },
+        {
+          name: "10",
+        },
+        {
+          name: "11",
+        },
+        {
+          name: "12",
+        },
+        {
+          name: "13",
+        },
+        {
+          name: "14",
+        },
+      ]}
+      renderItem={() => <RestaurantInfoCard />}
+      keyExtractor={(item) => item.name}
+    />
+  </SafeArea>
 );
