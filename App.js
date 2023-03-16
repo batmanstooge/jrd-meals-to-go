@@ -14,6 +14,15 @@ import {
   useFonts as useFontsLato,
   Lato_400Regular,
 } from "@expo-google-fonts/lato";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Text } from "react-native";
+
+const Settings = () => <Text>Setting</Text>;
+
+const Map = () => <Text>Map</Text>;
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [oswaldLoaded] = useFontsOswald({
@@ -30,7 +39,13 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <RestaurantsScreen />
+        <NavigationContainer>
+          <Tab.Navigator>
+            <Tab.Screen component={RestaurantsScreen} name="restaurants" />
+            <Tab.Screen component={Map} name="map" />
+            <Tab.Screen component={Settings} name="settings" />
+          </Tab.Navigator>
+        </NavigationContainer>
       </ThemeProvider>
       <StatusBar style="auto" />
     </>
