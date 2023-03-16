@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
+import { Spacer } from "../../../components/spacer/spacer.component";
 const RestaurantCard = styled(Card)`
   backgroundcolor: "white";
 `;
@@ -60,8 +61,8 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
         <RestaurantCardTitle>{name}</RestaurantCardTitle>
         <Section>
           <RestaurantCardRatingContainer>
-            {restaurantRatingArray.map(() => (
-              <SvgXml xml={star} width={20} height={20} />
+            {restaurantRatingArray.map((item, index) => (
+              <SvgXml key={index} xml={star} width={20} height={20} />
             ))}
           </RestaurantCardRatingContainer>
           <SectionEnd>
@@ -70,10 +71,12 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
                 CLOSED TEMPORARILY
               </Text>
             )}
-            <View style={{ paddingLeft: 16 }} />
-            {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
-            <View style={{ paddingLeft: 16 }} />
-            <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
+            <Spacer position="left" size="large">
+              {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
+            </Spacer>
+            <Spacer position="left" size="large">
+              <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
+            </Spacer>
           </SectionEnd>
         </Section>
         <RestaurantCardAddress>{address}</RestaurantCardAddress>
