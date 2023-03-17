@@ -19,6 +19,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
+import { LocationContextProvider } from "./src/services/location/location.context";
 
 const Settings = () => <Text>Setting</Text>;
 
@@ -58,23 +59,25 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <RestaurantsContextProvider>
-          <NavigationContainer>
-            <Tab.Navigator
-              screenOptions={({ route }) => ({
-                tabBarIcon: ({ focused, color, size }) => {
-                  return getTabBarIcon(route, focused, color, size);
-                },
-                tabBarActiveTintColor: "tomato",
-                tabBarInactiveTintColor: "gray",
-              })}
-            >
-              <Tab.Screen component={RestaurantsScreen} name="restaurants" />
-              <Tab.Screen component={Map} name="map" />
-              <Tab.Screen component={Settings} name="settings" />
-            </Tab.Navigator>
-          </NavigationContainer>
-        </RestaurantsContextProvider>
+        <LocationContextProvider>
+          <RestaurantsContextProvider>
+            <NavigationContainer>
+              <Tab.Navigator
+                screenOptions={({ route }) => ({
+                  tabBarIcon: ({ focused, color, size }) => {
+                    return getTabBarIcon(route, focused, color, size);
+                  },
+                  tabBarActiveTintColor: "tomato",
+                  tabBarInactiveTintColor: "gray",
+                })}
+              >
+                <Tab.Screen component={RestaurantsScreen} name="restaurants" />
+                <Tab.Screen component={Map} name="map" />
+                <Tab.Screen component={Settings} name="settings" />
+              </Tab.Navigator>
+            </NavigationContainer>
+          </RestaurantsContextProvider>
+        </LocationContextProvider>
       </ThemeProvider>
       <StatusBar style="auto" />
     </>
