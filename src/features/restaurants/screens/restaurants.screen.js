@@ -1,5 +1,10 @@
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
-import { StatusBar, FlatList, SafeAreaView, Pressable } from "react-native";
+import {
+  StatusBar,
+  FlatList,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import styled from "styled-components";
 
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
@@ -42,11 +47,13 @@ export const RestaurantsScreen = ({ navigation }) => {
         data={restaurants}
         renderItem={({ item }) => {
           return (
-            <Pressable onPress={() => navigation.navigate("restaurantdetails")}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("restaurantdetails")}
+            >
               <Spacer position="bottom" size="large">
                 <RestaurantInfoCard restaurant={item} />
               </Spacer>
-            </Pressable>
+            </TouchableOpacity>
           );
         }}
         keyExtractor={(item) => item.name}
