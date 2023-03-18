@@ -1,5 +1,5 @@
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
-import { StatusBar, FlatList, SafeAreaView } from "react-native";
+import { StatusBar, FlatList, SafeAreaView, Pressable } from "react-native";
 import styled from "styled-components";
 
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
@@ -28,7 +28,7 @@ const LoadingContainer = styled.View`
   left: 50%;
 `;
 
-export const RestaurantsScreen = () => {
+export const RestaurantsScreen = ({ navigation }) => {
   const { restaurants, isLoading } = useContext(RestaurantsContext);
   return (
     <SafeArea>
@@ -42,9 +42,11 @@ export const RestaurantsScreen = () => {
         data={restaurants}
         renderItem={({ item }) => {
           return (
-            <Spacer position="bottom" size="large">
-              <RestaurantInfoCard restaurant={item} />
-            </Spacer>
+            <Pressable onPress={() => navigation.navigate("restaurantdetails")}>
+              <Spacer position="bottom" size="large">
+                <RestaurantInfoCard restaurant={item} />
+              </Spacer>
+            </Pressable>
           );
         }}
         keyExtractor={(item) => item.name}
