@@ -1,14 +1,15 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { RestaurantsScreen } from "../../features/restaurants/screens/restaurants.screen";
+
 import { Text } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { RestaurantsNavigator } from "./restaurants.navigator";
 const Tab = createBottomTabNavigator();
 const Settings = () => <Text>Setting</Text>;
 const Map = () => <Text>Map</Text>;
 const getIconName = (route, focused) => {
   let iconName;
-  if (route.name === "restaurants") {
+  if (route.name === "restaurantsnavigator") {
     iconName = focused ? "md-restaurant" : "md-restaurant-outline";
   } else if (route.name === "map") {
     iconName = focused ? "md-map" : "md-map-outline";
@@ -34,7 +35,11 @@ export const AppNavigator = () => {
           tabBarInactiveTintColor: "gray",
         })}
       >
-        <Tab.Screen component={RestaurantsScreen} name="restaurants" />
+        <Tab.Screen
+          component={RestaurantsNavigator}
+          name="restaurantsnavigator"
+          options={{ headerShown: false, title: "restaurants" }}
+        />
         <Tab.Screen component={Map} name="map" />
         <Tab.Screen component={Settings} name="settings" />
       </Tab.Navigator>
