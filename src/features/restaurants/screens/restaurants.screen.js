@@ -1,5 +1,5 @@
-import { ActivityIndicator, Searchbar, MD2Colors } from "react-native-paper";
-import { StatusBar, FlatList, SafeAreaView, View } from "react-native";
+import { ActivityIndicator, MD2Colors } from "react-native-paper";
+import { StatusBar, FlatList, SafeAreaView } from "react-native";
 import styled from "styled-components";
 
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
@@ -29,7 +29,7 @@ const LoadingContainer = styled.View`
 `;
 
 export const RestaurantsScreen = () => {
-  const { restaurants, isLoading, error } = useContext(RestaurantsContext);
+  const { restaurants, isLoading } = useContext(RestaurantsContext);
   return (
     <SafeArea>
       {isLoading && (
