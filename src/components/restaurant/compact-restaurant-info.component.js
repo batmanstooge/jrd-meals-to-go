@@ -23,8 +23,9 @@ const Item = styled(View)`
   align-items: center;
 `;
 const isAndroid = Platform.OS === "android";
-export const CompactRestaurantInfo = ({ restaurant }) => {
-  const DeviceSpecificImage = isAndroid ? CompactWebView : CompactImage;
+export const CompactRestaurantInfo = ({ restaurant, isMap }) => {
+  const DeviceSpecificImage =
+    isAndroid && isMap ? CompactWebView : CompactImage;
   return (
     <Item>
       <DeviceSpecificImage source={{ uri: restaurant.photos[0] }} />
