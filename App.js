@@ -17,7 +17,10 @@ import { RestaurantsContextProvider } from "./src/services/restaurants/restauran
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { Navigation } from "./src/infrastructure/navigation";
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
+
 import { initializeApp } from "firebase/app";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useEffect, useState } from "react";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAUWq6Mhg3roLvyctxPMuRgKNTFZr9HPxg",
@@ -29,9 +32,21 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
+const firebaseAuth = getAuth(firebaseApp);
 
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  useEffect(() => {
+    signInWithEmailAndPassword(firebaseAuth, "test@test.com", "123456")
+      .then((userCredential) => {
+        console.log(userCredential);
+        setIsAuthenticated(true);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
   const [oswaldLoaded] = useFontsOswald({
     Oswald_400Regular,
   });
