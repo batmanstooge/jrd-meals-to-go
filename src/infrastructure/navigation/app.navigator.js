@@ -1,4 +1,3 @@
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { Text } from "react-native";
@@ -25,28 +24,26 @@ const getTabBarIcon = (route, focused, color, size) => {
 };
 export const AppNavigator = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            return getTabBarIcon(route, focused, color, size);
-          },
-          tabBarActiveTintColor: "tomato",
-          tabBarInactiveTintColor: "gray",
-        })}
-      >
-        <Tab.Screen
-          component={RestaurantsNavigator}
-          name="restaurantsnavigator"
-          options={{ headerShown: false, title: "restaurants" }}
-        />
-        <Tab.Screen
-          component={MapScreen}
-          name="map"
-          options={{ headerShown: false }}
-        />
-        <Tab.Screen component={Settings} name="settings" />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          return getTabBarIcon(route, focused, color, size);
+        },
+        tabBarActiveTintColor: "tomato",
+        tabBarInactiveTintColor: "gray",
+      })}
+    >
+      <Tab.Screen
+        component={RestaurantsNavigator}
+        name="restaurantsnavigator"
+        options={{ headerShown: false, title: "restaurants" }}
+      />
+      <Tab.Screen
+        component={MapScreen}
+        name="map"
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen component={Settings} name="settings" />
+    </Tab.Navigator>
   );
 };
