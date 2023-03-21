@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { Children } from "react/cjs/react.production.min";
-import { loginRequest } from "./authentication.service";
+import { createUserRequest, loginRequest } from "./authentication.service";
 
 export const AuthenticationContext = createContext();
 
@@ -10,7 +10,6 @@ export const AuthenticationContextProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const onLogin = (email, password) => {
-    console.log(email);
     setIsLoading(true);
     loginRequest(email, password)
       .then((userCredential) => {
@@ -22,6 +21,22 @@ export const AuthenticationContextProvider = ({ children }) => {
         setIsLoading(false);
       });
   };
+  const onRegister = (email, password, repeatedPassword) => {
+    if (password !== repeatedPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+    setIsLoading(true);
+    createUserRequest(email, password)
+      .then((userCredential) => {
+        setIsLoading(false);
+        setUser(userCredential.user);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+        setError(e.toString());
+      });
+  };
   return (
     <AuthenticationContext.Provider
       value={{
@@ -30,6 +45,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         isLoading,
         error,
         onLogin,
+        onRegister,
       }}
     >
       {children}
