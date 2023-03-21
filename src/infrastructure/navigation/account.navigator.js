@@ -1,21 +1,17 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { View, Text } from "react-native";
 import { AccountScreen } from "../../features/account/screens/account.screen";
+import { LoginScreen } from "../../features/account/screens/login.screen";
+import { RegisterScreen } from "../../features/account/screens/register.screen";
 
 const AuthStack = createStackNavigator();
 
 export const AccountNavigator = () => {
   return (
-    <AuthStack.Navigator>
-      <AuthStack.Screen name="authentication" component={AccountScreen} />
-      <AuthStack.Screen
-        name="login"
-        component={() => (
-          <View>
-            <Text>Login</Text>
-          </View>
-        )}
-      />
+    <AuthStack.Navigator screenOptions={{ headerShown: false }}>
+      <AuthStack.Screen name="Main" component={AccountScreen} />
+      <AuthStack.Screen name="Login" component={LoginScreen} />
+      <AuthStack.Screen name="Register" component={RegisterScreen} />
     </AuthStack.Navigator>
   );
 };
