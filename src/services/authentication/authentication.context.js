@@ -17,6 +17,7 @@ export const AuthenticationContextProvider = ({ children }) => {
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, (u) => {
       setIsLoading(true);
+      setError(null);
       if (u) {
         setUser(u);
         setIsLoading(true);
@@ -57,6 +58,7 @@ export const AuthenticationContextProvider = ({ children }) => {
   const onLogout = () => {
     logoutRequest();
     setUser(null);
+    setError(null);
   };
   return (
     <AuthenticationContext.Provider
