@@ -1,6 +1,11 @@
-import { createContext, useState } from "react";
-import { Children } from "react/cjs/react.production.min";
-import { createUserRequest, loginRequest } from "./authentication.service";
+import { onAuthStateChanged } from "firebase/auth";
+import { createContext, useEffect, useState } from "react";
+import {
+  createUserRequest,
+  firebaseAuth,
+  loginRequest,
+  logoutRequest,
+} from "./authentication.service";
 
 export const AuthenticationContext = createContext();
 
@@ -8,6 +13,18 @@ export const AuthenticationContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    onAuthStateChanged(firebaseAuth, (u) => {
+      setIsLoading(true);
+      if (u) {
+        setUser(u);
+        setIsLoading(true);
+      } else {
+        setIsLoading(false);
+      }
+    });
+  }, []);
 
   const onLogin = (email, password) => {
     setIsLoading(true);
@@ -37,6 +54,10 @@ export const AuthenticationContextProvider = ({ children }) => {
         setError(e.toString());
       });
   };
+  const onLogout = () => {
+    logoutRequest();
+    setUser(null);
+  };
   return (
     <AuthenticationContext.Provider
       value={{
@@ -46,6 +67,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         error,
         onLogin,
         onRegister,
+        onLogout,
       }}
     >
       {children}

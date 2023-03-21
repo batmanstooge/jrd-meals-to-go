@@ -3,6 +3,8 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -15,8 +17,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const firebaseApp = initializeApp(firebaseConfig);
-const firebaseAuth = getAuth(firebaseApp);
+export const firebaseApp = initializeApp(firebaseConfig);
+export const firebaseAuth = getAuth(firebaseApp);
 
 export const loginRequest = (email, password) => {
   return signInWithEmailAndPassword(firebaseAuth, email, password);
@@ -24,4 +26,8 @@ export const loginRequest = (email, password) => {
 
 export const createUserRequest = (email, password) => {
   return createUserWithEmailAndPassword(firebaseAuth, email, password);
+};
+
+export const logoutRequest = () => {
+  return signOut(firebaseAuth);
 };

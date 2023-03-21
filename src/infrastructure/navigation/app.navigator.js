@@ -1,11 +1,21 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { Text } from "react-native";
+import { Button, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { RestaurantsNavigator } from "./restaurants.navigator";
 import { MapScreen } from "../../features/map/screens/map.screen";
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import { useContext } from "react";
 const Tab = createBottomTabNavigator();
-const Settings = () => <Text>Setting</Text>;
+const Settings = () => {
+  const { onLogout } = useContext(AuthenticationContext);
+  return (
+    <View>
+      <Text>Setting</Text>
+      <Button title="Logout" onPress={() => onLogout()} />
+    </View>
+  );
+};
 const getIconName = (route, focused) => {
   let iconName;
   if (route.name === "restaurantsnavigator") {
