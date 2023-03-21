@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { ImageBackground } from "react-native";
 
-import { Button } from "react-native-paper";
+import { Button, TextInput } from "react-native-paper";
 import styled from "styled-components";
 import { colors } from "../../../infrastructure/theme/colors";
 
@@ -29,3 +29,7 @@ export const AccountContainer = styled(View)`
 export const AuthButton = styled(Button).attrs({
   buttonColor: colors.brand.primary,
 })``;
+
+export const AuthInput = styled(TextInput)`
+  width: 300px;
+`;
