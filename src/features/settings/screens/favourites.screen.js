@@ -20,7 +20,7 @@ export const FavouritesScreen = ({ navigation }) => {
           return (
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate("RestaurantDetail", {
+                navigation.navigate("restaurantdetails", {
                   restaurant: item,
                 })
               }
